@@ -1,12 +1,23 @@
 ﻿using System.Windows;
+using FriendStorage.UI.ViewModel;
 
 namespace FriendStorage.UI.View
 {
   public partial class MainWindow : Window
   {
-    public MainWindow()
+      private MainViewModel _viewModel;
+
+    public MainWindow(MainViewModel viewModel)
     {
       InitializeComponent();
+      Loaded += MainWindow_Loaded;        
+      _viewModel = viewModel;
+      DataContext = _viewModel;
     }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            _viewModel.Load();
+        }
   }
 }
